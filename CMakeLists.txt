@@ -11,3 +11,9 @@ target_include_directories(
   INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/core)
 file(GLOB_RECURSE SO_FILES "./*.so")
 target_link_libraries(${PROJECT_NAME} INTERFACE ${SO_FILES})
+
+if(NOT ${OUT} STREQUAL "")
+  message("Set output directory to ${OUT}")
+  file(GLOB_RECURSE LIBS "./libonnxruntime*")
+  file(COPY ${LIBS} DESTINATION ${OUT_LIB})
+endif()
